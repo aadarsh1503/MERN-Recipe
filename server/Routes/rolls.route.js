@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import Roll from '../models/rolls.js';
+
 const router = express.Router();
-const Roll = require('../models/rolls.js');
 
 // Create a new roll
 router.post('/rolls', async (req, res) => {
@@ -75,4 +76,4 @@ router.delete('/rolls/:id', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

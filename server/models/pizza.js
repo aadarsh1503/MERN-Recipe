@@ -1,10 +1,9 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const pizzaSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
-
+        required: true
     },
     description: {
         type: String,
@@ -24,4 +23,4 @@ const pizzaSchema = new mongoose.Schema({
 
 const Pizza = mongoose.model('Pizza', pizzaSchema);
 
-module.exports = Pizza;
+export default Pizza;

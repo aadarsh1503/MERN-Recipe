@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import IceCream from '../models/IceCreams.js'; // Adjust the path as needed
+
 const router = express.Router();
-const IceCream = require('../models/IceCreams.js'); // Assuming your model is in the models directory
 
 // GET all ice creams
 router.get('/icecreams', async (req, res) => {
@@ -81,4 +82,4 @@ router.delete('/icecreams/:id', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

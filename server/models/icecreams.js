@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const iceCreamSchema = new mongoose.Schema({
     name: {
@@ -24,4 +24,4 @@ const iceCreamSchema = new mongoose.Schema({
 
 const IceCream = mongoose.model('IceCream', iceCreamSchema);
 
-module.exports = IceCream;
+export default IceCream;

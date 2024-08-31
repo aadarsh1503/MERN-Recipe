@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import Pizza from '../models/pizza.js';
+
 const router = express.Router();
-const Pizza = require('../models/pizza.js');
 
 // Create a new pizza
 router.post('/pizzas', async (req, res) => {
@@ -24,7 +25,7 @@ router.post('/pizzas', async (req, res) => {
 router.get('/pizzas', async (req, res) => {
     try {
         const pizzas = await Pizza.find();
-        res.status(200).json({pizzas:pizzas});
+        res.status(200).json({ pizzas: pizzas });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
@@ -75,4 +76,4 @@ router.delete('/pizzas/:id', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

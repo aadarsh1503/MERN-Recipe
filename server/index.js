@@ -1,16 +1,13 @@
-const express = require('express');
-const cors = require('cors');
-const connectDB = require('./db.js');
-const userRoutes = require('./Routes/user.route.js');
-const authRoutes = require('./Routes/auth.route.js');
-
-const pizzaRoutes = require('./Routes/pizza.route.js'); 
-const rollRoutes = require('./Routes/rolls.route.js');
-const iceCreamRoutes = require('./Routes/icecreams.route.js');
-const burgerRoutes = require('./Routes/burger.route.js'); 
-const Cart = require('./Routes/cart.route.js');
-
-
+import express from 'express';
+import cors from 'cors';
+import connectDB from './db.js';
+import userRoutes from './Routes/user.route.js';
+import authRoutes from './Routes/auth.route.js';
+import pizzaRoutes from './Routes/pizza.route.js'; 
+import rollRoutes from './Routes/rolls.route.js';
+import iceCreamRoutes from './Routes/icecreams.route.js';
+import burgerRoutes from './Routes/burger.route.js'; 
+import Cart from './Routes/cart.route.js';
 
 const app = express();
 
@@ -18,8 +15,6 @@ app.use(cors());
 
 // Enable JSON parsing
 app.use(express.json());
-
-
 
 // Connect to MongoDB
 connectDB();
@@ -32,7 +27,6 @@ app.use('/', pizzaRoutes);
 app.use('/', rollRoutes);
 app.use("/", iceCreamRoutes);
 app.use('/', Cart );
-
 
 // Start the server
 app.listen(3000, () => {

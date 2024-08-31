@@ -1,8 +1,7 @@
+import express from 'express';
+import cartModel from '../models/cart.js';
+import userModel from '../models/user.js';
 
-
-const express = require('express');
-const cartModel = require('../models/cart.js');
-const userModel = require('../models/user.js');
 const router = express.Router();
 
 router.post('/carts/:userId', async (req, res) => {
@@ -10,6 +9,7 @@ router.post('/carts/:userId', async (req, res) => {
 
   try {
     const user = await userModel.findById(req.params.userId);
+    console.log('Requested user ID:', req.params.userId);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -27,7 +27,7 @@ router.post('/carts/:userId', async (req, res) => {
     // Add item to the cart
     const item = { name, description, image, price, quantity, size };
     cart.items.push(item);
-    
+
     await cart.save();
 
     // Associate the cart with the user
@@ -48,7 +48,7 @@ router.get('/cart/:id', async (req, res) => {
     if (!user || !user.cart) {
       return res.status(404).json({ message: 'Cart not found' });
     }
-    
+
     const cart = await cartModel.findById(user.cart);
     res.status(200).json(cart);
   } catch (error) {
@@ -75,4 +75,4 @@ router.delete('/cart/:userId/item/:itemId', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

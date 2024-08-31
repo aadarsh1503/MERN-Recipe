@@ -1,17 +1,16 @@
-const express = require('express');
-const userModel = require('../models/user.js');
+import express from 'express';
+import userModel from '../models/user.js';
+
 const router = express.Router();
 
 // @route POST /users
 // @desc Create a new user
-
 router.post('/users', async (req, res) => {
-  const { name, email, description, password,cart } = req.body;
+  const { name, email, description, password, cart } = req.body;
 
   try {
     // Input validation
-    if (!name || !email || !description || !password  || !cart) {
-
+    if (!name || !email || !description || !password || !cart) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
@@ -26,8 +25,8 @@ router.post('/users', async (req, res) => {
       name,
       email,
       description,
-      password,
-      cart, // Ensure password is hashed in real implementation
+      password, // Ensure password is hashed in real implementation
+      cart,
     });
 
     await newUser.save();
@@ -110,4 +109,4 @@ router.delete('/users/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

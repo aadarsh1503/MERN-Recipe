@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import Burger from '../models/burger.js'; // Adjust the path as needed
+
 const router = express.Router();
-const Burger = require('../models/burger.js'); // Adjust the path as needed
 
 // Create a new burger
 router.post('/burger', async (req, res) => {
@@ -68,4 +69,4 @@ router.delete('/burger/:id', async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

@@ -19,7 +19,7 @@ const Burgers = () => {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                console.log('Fetched burger data:', data);
+
                 setBurgerData(data);
             } catch (error) {
                 console.error('Error fetching burgers:', error);
@@ -36,7 +36,7 @@ const Burgers = () => {
     const addToCart = async (burger) => {
         console.log('Attempting to add burger to cart:', burger);
 
-        // Correctly check if the user is authenticated
+       
         if (!user?._id) { // If user is not authenticated
             alert('User not authenticated');
             console.log('User not authenticated:', user);
@@ -52,10 +52,10 @@ const Burgers = () => {
                 body: JSON.stringify({
                     name: burger.name,
                     description: burger.description,
-                    image: burger.pic, // Updated field to match the schema
+                    image: burger.pic, 
                     price: burger.price,
-                    quantity: 1, // Adjust quantity as needed
-                    size: 'Medium', // Adjust size as needed, or make it dynamic
+                    quantity: 1, 
+                    size: 'Medium',
                 }),
             });
 
@@ -73,7 +73,6 @@ const Burgers = () => {
     };
 
     if (loading) {
-        console.log('Loading burgers...');
         return <div className="text-center text-gray-700">Loading...</div>;
     }
 
