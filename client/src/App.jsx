@@ -9,13 +9,14 @@ import Pizzas from './components/Pizza/Pizza.jsx';
 import Rolls from './components/Rolls/Rolls.jsx';
 import IceCreams from './components/IceCreams/IceCreams.jsx';
 import Cart from './components/Cart/Cart.jsx';
+import BuyNow from './components/BuyNow/BuyNow.jsx'; // Import BuyNow
 import { useAuth, AuthProvider } from './components/context/AuthContext'; 
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx'; // Import ProtectedRoute
 import './index.css';
 import AdminPanel from './components/AdminPanel/AdminPanel.jsx';
 
 const App = () => {
-  const { token, user } = useAuth(); // Using AuthContext to get token and user
+  const { token,user } = useAuth(); // Using AuthContext to get token
   console.log("User:", user);
 
   return (
@@ -38,7 +39,7 @@ const App = () => {
       <Route path="/icecreams" element={<IceCreams />} />
       <Route path="/AdminPanel" element={<AdminPanel />} />
 
-      {/* Protected Route for Cart */}
+      {/* Protected Routes */}
       <Route
         path="/cart"
         element={
@@ -46,6 +47,14 @@ const App = () => {
             <Cart />
           </ProtectedRoute>
         } 
+      />
+      <Route
+        path="/buynow"
+        element={
+          <ProtectedRoute>
+            <BuyNow />
+          </ProtectedRoute>
+        }
       />
     </Routes>
   );

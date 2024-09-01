@@ -58,7 +58,7 @@ router.get('/cart/:id', async (req, res) => {
 
 // @route DELETE /cart/:userId/item/:itemId
 // @desc Remove an item from the user's cart
-router.delete('/cart/:userId/item/:itemId', async (req, res) => {
+router.delete('/cart/:userId/:itemId', async (req, res) => {
   try {
     const user = await userModel.findById(req.params.userId);
     if (!user || !user.cart) {

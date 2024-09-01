@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AiOutlineShoppingCart, AiOutlineHeart, AiOutlineStar } from 'react-icons/ai';
 import { AuthContext } from '../context/AuthContext';
 import { postData } from '../utils/api';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Pizzas = () => {
     const { user } = useContext(AuthContext);
@@ -11,7 +13,6 @@ const Pizzas = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-  
     useEffect(() => {
         const fetchPizzas = async () => {
             try {
@@ -33,7 +34,19 @@ const Pizzas = () => {
 
     const addToCart = async (pizza) => {
         if (!user?._id) {
-            alert('User not authenticated');
+            toast.error('User not authenticated', {
+                style: {
+                    backgroundColor: '#dc3545', // Red color for error
+                    color: 'white',
+                    fontSize: '18px', // Increase font size
+                    width: '400px', // Increase width
+                    height: '100px', // Increase height
+                    display: 'flex', // Flex display for alignment
+                    alignItems: 'center', // Center align items
+                    justifyContent: 'center', // Center align content
+                },
+                icon: <AiOutlineShoppingCart size={24} color="green" />,
+            });
             return;
         }
 
@@ -49,9 +62,32 @@ const Pizzas = () => {
         try {
             const result = await postData(`http://localhost:3000/carts/${user._id}`, cartData);
             console.log('Pizza added to cart successfully:', result);
-            alert('Pizza added to cart successfully!');
+            toast.success('Pizza added to cart successfully!', {
+                style: {
+                    backgroundColor: '#ffffff', // Green color for success
+                    color: 'Black',
+                    fontSize: '18px', // Increase font size
+                    width: '400px', // Increase width
+                    height: '100px', // Increase height
+                    display: 'flex', // Flex display for alignment
+                    alignItems: 'center', // Center align items
+                    justifyContent: 'center', // Center align content
+                },
+                icon: <AiOutlineShoppingCart size={24} color="green" />,
+            });
         } catch (error) {
-            alert(`Error: ${error.message}`);
+            toast.error(`Error: ${error.message}`, {
+                style: {
+                    backgroundColor: '#dc3545', // Red color for error
+                    color: 'white',
+                    fontSize: '18px', // Increase font size
+                    width: '400px', // Increase width
+                    height: '100px', // Increase height
+                    display: 'flex', // Flex display for alignment
+                    alignItems: 'center', // Center align items
+                    justifyContent: 'center', // Center align content
+                },
+            });
         }
     };
 
@@ -103,6 +139,17 @@ const Pizzas = () => {
                     </div>
                 ))}
             </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={1000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };

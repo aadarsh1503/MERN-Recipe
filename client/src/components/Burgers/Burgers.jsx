@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AiOutlineShoppingCart, AiOutlineHeart, AiOutlineStar } from 'react-icons/ai';
 import { AuthContext } from '../context/AuthContext';
-import { postData } from '../utils/api'; // Import the reusable POST function
+import { postData } from '../utils/api';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Burgers = () => {
-    const { user } = useContext(AuthContext); // Use user from context
+    const { user } = useContext(AuthContext);
     console.log('User data:', user);
 
     const [burgerData, setBurgerData] = useState([]);
@@ -32,8 +34,20 @@ const Burgers = () => {
     }, []);
 
     const addToCart = async (burger) => {
-        if (!user?._id) { // If user is not authenticated
-            alert('User not authenticated');
+        if (!user?._id) {
+            toast.error('User not authenticated', {
+                style: {
+                    backgroundColor: '#dc3545', // Red color for error
+                    color: 'white',
+                    fontSize: '18px', // Increase font size
+                    width: '400px', // Increase width
+                    height: '100px', // Increase height
+                    display: 'flex', // Flex display for alignment
+                    alignItems: 'center', // Center align items
+                    justifyContent: 'center', // Center align content
+                },
+                icon: <AiOutlineShoppingCart size={24} color="green" />,
+            });
             return;
         }
 
@@ -42,16 +56,39 @@ const Burgers = () => {
             description: burger.description,
             image: burger.pic,
             price: burger.price,
-            quantity: 1, // Set default quantity
-            size: 'Medium', // Set default size
+            quantity: 1,
+            size: 'Medium',
         };
 
         try {
             const result = await postData(`http://localhost:3000/carts/${user._id}`, cartData);
             console.log('Burger added to cart successfully:', result);
-            alert('Burger added to cart successfully!');
+            toast.success('Burger added to cart successfully!', {
+                style: {
+                    backgroundColor: '#ffffff', // White color for success
+                    color: 'black',
+                    fontSize: '18px', // Increase font size
+                    width: '400px', // Increase width
+                    height: '100px', // Increase height
+                    display: 'flex', // Flex display for alignment
+                    alignItems: 'center', // Center align items
+                    justifyContent: 'center', // Center align content
+                },
+                icon: <AiOutlineShoppingCart size={24} color="green" />,
+            });
         } catch (error) {
-            alert(`Error: ${error.message}`);
+            toast.error(`Error: ${error.message}`, {
+                style: {
+                    backgroundColor: '#dc3545', // Red color for error
+                    color: 'white',
+                    fontSize: '18px', // Increase font size
+                    width: '400px', // Increase width
+                    height: '100px', // Increase height
+                    display: 'flex', // Flex display for alignment
+                    alignItems: 'center', // Center align items
+                    justifyContent: 'center', // Center align content
+                },
+            });
         }
     };
 
@@ -98,6 +135,17 @@ const Burgers = () => {
                     </div>
                 ))}
             </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={1000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };

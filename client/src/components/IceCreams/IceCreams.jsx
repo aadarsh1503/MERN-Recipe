@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AiOutlineShoppingCart, AiOutlineHeart, AiOutlineStar } from 'react-icons/ai';
 import { AuthContext } from '../context/AuthContext'; // Import AuthContext for user authentication
 import { postData } from '../utils/api'; // Import postData utility function
+import { toast, ToastContainer } from 'react-toastify'; // Import toast and ToastContainer
+import 'react-toastify/dist/ReactToastify.css'; // Import toastify CSS
 
 const IceCreams = () => {
     const { user } = useContext(AuthContext); // Get user from AuthContext
@@ -32,7 +34,19 @@ const IceCreams = () => {
     // Add selected ice cream to the cart
     const addToCart = async (iceCream) => {
         if (!user?._id) { // Check if the user is authenticated
-            alert('User not authenticated');
+            toast.error('User not authenticated', {
+                style: {
+                    backgroundColor: '#dc3545', // Red color for error
+                    color: 'white',
+                    fontSize: '18px', // Increase font size
+                    width: '400px', // Increase width
+                    height: '100px', // Increase height
+                    display: 'flex', // Flex display for alignment
+                    alignItems: 'center', // Center align items
+                    justifyContent: 'center', // Center align content
+                },
+                icon: <AiOutlineShoppingCart size={24} color="white" />,
+            });
             return;
         }
 
@@ -49,9 +63,32 @@ const IceCreams = () => {
         try {
             const result = await postData(`http://localhost:3000/carts/${user._id}`, cartData);
             console.log('Ice cream added to cart successfully:', result);
-            alert('Ice cream added to cart successfully!');
+            toast.success('Ice cream added to cart successfully!', {
+                style: {
+                    backgroundColor: '#28a745', // Green color for success
+                    color: 'white',
+                    fontSize: '18px', // Increase font size
+                    width: '400px', // Increase width
+                    height: '100px', // Increase height
+                    display: 'flex', // Flex display for alignment
+                    alignItems: 'center', // Center align items
+                    justifyContent: 'center', // Center align content
+                },
+                icon: <AiOutlineShoppingCart size={24} color="white" />, // Custom icon for success
+            });
         } catch (error) {
-            alert(`Error: ${error.message}`);
+            toast.error(`Error: ${error.message}`, {
+                style: {
+                    backgroundColor: '#dc3545', // Red color for error
+                    color: 'white',
+                    fontSize: '18px', // Increase font size
+                    width: '400px', // Increase width
+                    height: '100px', // Increase height
+                    display: 'flex', // Flex display for alignment
+                    alignItems: 'center', // Center align items
+                    justifyContent: 'center', // Center align content
+                },
+            });
         }
     };
 
@@ -100,6 +137,17 @@ const IceCreams = () => {
                     </div>
                 ))}
             </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={1000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 };
