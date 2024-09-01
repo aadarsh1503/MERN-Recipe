@@ -12,6 +12,7 @@ import Cart from './components/Cart/Cart.jsx';
 import { useAuth, AuthProvider } from './components/context/AuthContext'; 
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx'; // Import ProtectedRoute
 import './index.css';
+import AdminPanel from './components/AdminPanel/AdminPanel.jsx';
 
 const App = () => {
   const { token, user } = useAuth(); // Using AuthContext to get token and user
@@ -35,6 +36,7 @@ const App = () => {
       <Route path="/pizza" element={<Pizzas />} />
       <Route path="/rolls" element={<Rolls />} />
       <Route path="/icecreams" element={<IceCreams />} />
+      <Route path="/AdminPanel" element={<AdminPanel />} />
 
       {/* Protected Route for Cart */}
       <Route

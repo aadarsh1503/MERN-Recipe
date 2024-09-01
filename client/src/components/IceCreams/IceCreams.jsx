@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { AiOutlineShoppingCart, AiOutlineHeart, AiOutlineStar } from 'react-icons/ai';
+import { AuthContext } from '../context/AuthContext'; // Import AuthContext for user authentication
+import { postData } from '../utils/api'; // Import postData utility function
 
 const IceCreams = () => {
+    const { user } = useContext(AuthContext); // Get user from AuthContext
     const [iceCreamData, setIceCreamData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -25,6 +28,32 @@ const IceCreams = () => {
 
         fetchIceCreams();
     }, []);
+
+    // Add selected ice cream to the cart
+    const addToCart = async (iceCream) => {
+        if (!user?._id) { // Check if the user is authenticated
+            alert('User not authenticated');
+            return;
+        }
+
+        const cartData = {
+            name: iceCream.name,
+            description: iceCream.description,
+            image: iceCream.image,
+            price: iceCream.price,
+            quantity: 1, // Default quantity
+            size: iceCream.size || 'Medium', // Default size if not available
+            flavors: iceCream.flavors.join(', '), // Combine flavors into a single string
+        };
+
+        try {
+            const result = await postData(`http://localhost:3000/carts/${user._id}`, cartData);
+            console.log('Ice cream added to cart successfully:', result);
+            alert('Ice cream added to cart successfully!');
+        } catch (error) {
+            alert(`Error: ${error.message}`);
+        }
+    };
 
     if (loading) {
         return <div className="text-center text-gray-700">Loading...</div>;
@@ -53,7 +82,10 @@ const IceCreams = () => {
                             <div className="flex items-center justify-between">
                                 <span className="text-xl font-semibold text-green-600">${iceCream.price}</span>
                                 <div className="flex space-x-2">
-                                    <button className="bg-indigo-500 text-white p-2 rounded-full hover:bg-indigo-600">
+                                    <button
+                                        className="bg-indigo-500 text-white p-2 rounded-full hover:bg-indigo-600"
+                                        onClick={() => addToCart(iceCream)}
+                                    >
                                         <AiOutlineShoppingCart size={24} />
                                     </button>
                                     <button className="bg-red-500 text-white p-2 rounded-full hover:bg-red-600">

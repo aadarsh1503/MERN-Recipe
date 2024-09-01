@@ -4,7 +4,7 @@ import Pizza from '../models/pizza.js';
 const router = express.Router();
 
 // Create a new pizza
-router.post('/pizzas', async (req, res) => {
+router.post('/pizza', async (req, res) => {
     const { name, description, price, size, toppings } = req.body;
 
     // Input validation

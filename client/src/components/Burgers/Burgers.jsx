@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AiOutlineShoppingCart, AiOutlineHeart, AiOutlineStar } from 'react-icons/ai';
-import { AuthContext } from '../context/AuthContext'; // Importing AuthContext directly
+import { AuthContext } from '../context/AuthContext';
+import { postData } from '../utils/api'; // Import the reusable POST function
 
 const Burgers = () => {
     const { user } = useContext(AuthContext); // Use user from context
@@ -12,21 +13,18 @@ const Burgers = () => {
 
     useEffect(() => {
         const fetchBurgers = async () => {
-            console.log(user);
             try {
                 const response = await fetch('http://localhost:3000/burgers'); // Replace with your API endpoint
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-
                 setBurgerData(data);
             } catch (error) {
                 console.error('Error fetching burgers:', error);
                 setError(error.message);
             } finally {
                 setLoading(false);
-                console.log('Finished fetching burgers.');
             }
         };
 
@@ -34,40 +32,25 @@ const Burgers = () => {
     }, []);
 
     const addToCart = async (burger) => {
-        console.log('Attempting to add burger to cart:', burger);
-
-       
         if (!user?._id) { // If user is not authenticated
             alert('User not authenticated');
-            console.log('User not authenticated:', user);
             return;
         }
 
+        const cartData = {
+            name: burger.name,
+            description: burger.description,
+            image: burger.pic,
+            price: burger.price,
+            quantity: 1, // Set default quantity
+            size: 'Medium', // Set default size
+        };
+
         try {
-            const response = await fetch(`http://localhost:3000/carts/${user._id}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: burger.name,
-                    description: burger.description,
-                    image: burger.pic, 
-                    price: burger.price,
-                    quantity: 1, 
-                    size: 'Medium',
-                }),
-            });
-
-            if (!response.ok) {
-                throw new Error('Failed to add item to the cart');
-            }
-
-            const result = await response.json();
+            const result = await postData(`http://localhost:3000/carts/${user._id}`, cartData);
             console.log('Burger added to cart successfully:', result);
             alert('Burger added to cart successfully!');
         } catch (error) {
-            console.error('Error adding burger to cart:', error);
             alert(`Error: ${error.message}`);
         }
     };
@@ -77,7 +60,6 @@ const Burgers = () => {
     }
 
     if (error) {
-        console.log('Error encountered:', error);
         return <div className="text-center text-red-600">Error: {error}</div>;
     }
 
@@ -90,7 +72,7 @@ const Burgers = () => {
                         <img
                             src={burger.pic} // Updated to use the correct field
                             alt={burger.name}
-                            className="w-full h-48 object-cover rounded-t-xl"
+                            className="w-full h-64 object-cover rounded-t-xl"
                         />
                         <div className="p-6">
                             <h2 className="text-2xl font-bold text-gray-800 mb-2">{burger.name}</h2>

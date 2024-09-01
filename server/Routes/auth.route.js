@@ -1,7 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
-import checkUserAuth from "../middlewares/auth_middlewares.js";
+
 
 const router = express.Router();
 
@@ -62,10 +62,5 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Profile route
-router.get("/profile", checkUserAuth, (req, res) => {
-    res.status(200).json({ user: req.user });
-});
-
-// Export router using ESM syntax
+  
 export default router;

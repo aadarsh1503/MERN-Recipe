@@ -20,7 +20,7 @@ const rollSchema = new mongoose.Schema({
         enum: ['Small', 'Medium', 'Large'], // Enum for predefined sizes
         required: true
     }
-}, { timestamps: true });
+},);
 
 const Roll = mongoose.model('Roll', rollSchema);
 

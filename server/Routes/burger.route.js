@@ -7,6 +7,12 @@ const router = express.Router();
 router.post('/burger', async (req, res) => {
     try {
         const { name, description, price, pic } = req.body;
+
+        // Ensure pic is a URL or valid string
+        if (!pic || typeof pic !== 'string') {
+            return res.status(400).json({ error: 'Invalid picture URL' });
+        }
+
         const newBurger = new Burger({ name, description, price, pic });
         await newBurger.save();
         res.status(201).json(newBurger);

@@ -1,39 +1,72 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { AiOutlineShoppingCart, AiOutlineHeart, AiOutlineStar } from 'react-icons/ai';
+import { AuthContext } from '../context/AuthContext';
+import { postData } from '../utils/api';
 
 const Pizzas = () => {
-    const pizzaData = [
-        {
-            name: 'Margherita Pizza',
-            description: 'A simple classic with fresh mozzarella, tomatoes, and basil.',
-            price: '$12.99',
-            image: 'https://via.placeholder.com/150?text=Margherita+Pizza',
-        },
-        {
-            name: 'Pepperoni Pizza',
-            description: 'Topped with spicy pepperoni slices and a rich tomato sauce.',
-            price: '$14.99',
-            image: 'https://via.placeholder.com/150?text=Pepperoni+Pizza',
-        },
-        {
-            name: 'BBQ Chicken Pizza',
-            description: 'Tangy BBQ sauce, grilled chicken, and red onions on a crispy crust.',
-            price: '$15.49',
-            image: 'https://via.placeholder.com/150?text=BBQ+Chicken+Pizza',
-        },
-        {
-            name: 'Veggie Supreme Pizza',
-            description: 'Loaded with bell peppers, olives, onions, and mushrooms.',
-            price: '$13.99',
-            image: 'https://via.placeholder.com/150?text=Veggie+Supreme+Pizza',
-        },
-        {
-            name: 'Hawaiian Pizza',
-            description: 'A sweet and savory mix of ham, pineapple, and mozzarella cheese.',
-            price: '$14.49',
-            image: 'https://via.placeholder.com/150?text=Hawaiian+Pizza',
-        },
-    ];
+    const { user } = useContext(AuthContext);
+    console.log('User data:', user);
+
+    const [pizzaData, setPizzaData] = useState([]); // Ensure it's initialized as an empty array
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+  
+    useEffect(() => {
+        const fetchPizzas = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/pizzas'); // Corrected URL
+                if (!response.ok) {
+                    throw new Error('Failed to fetch pizzas');
+                }
+                const data = await response.json();
+                setPizzaData(data.pizzas);
+                setLoading(false);
+            } catch (error) {
+                setError(error.message);
+                setLoading(false);
+            }
+        };
+
+        fetchPizzas();
+    }, []);
+
+    const addToCart = async (pizza) => {
+        if (!user?._id) {
+            alert('User not authenticated');
+            return;
+        }
+
+        const cartData = {
+            name: pizza.name,
+            description: pizza.description,
+            image: pizza.image,
+            price: pizza.price,
+            quantity: 1,
+            size: 'Medium',
+        };
+
+        try {
+            const result = await postData(`http://localhost:3000/carts/${user._id}`, cartData);
+            console.log('Pizza added to cart successfully:', result);
+            alert('Pizza added to cart successfully!');
+        } catch (error) {
+            alert(`Error: ${error.message}`);
+        }
+    };
+
+    if (loading) {
+        return <div className="text-center text-gray-700">Loading...</div>;
+    }
+
+    if (error) {
+        return <div className="text-center text-red-600">Error: {error}</div>;
+    }
+
+    // Ensure pizzaData is an array before calling .map
+    if (!Array.isArray(pizzaData)) {
+        return <div className="text-center text-red-600">Unexpected data format</div>;
+    }
 
     return (
         <div className="min-h-screen bg-gray-100 py-12 px-4 md:px-20">
@@ -52,7 +85,10 @@ const Pizzas = () => {
                             <div className="flex items-center justify-between">
                                 <span className="text-xl font-semibold text-green-600">{pizza.price}</span>
                                 <div className="flex space-x-2">
-                                    <button className="bg-indigo-500 text-white p-2 rounded-full hover:bg-indigo-600">
+                                    <button
+                                        className="bg-indigo-500 text-white p-2 rounded-full hover:bg-indigo-600"
+                                        onClick={() => addToCart(pizza)}
+                                    >
                                         <AiOutlineShoppingCart size={24} />
                                     </button>
                                     <button className="bg-red-500 text-white p-2 rounded-full hover:bg-red-600">
