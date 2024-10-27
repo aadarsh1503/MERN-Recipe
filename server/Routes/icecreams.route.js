@@ -1,5 +1,5 @@
 import express from 'express';
-import IceCreams from '../models/Icecreams.js'; // Adjust the path as needed
+import IceCreams from '../models/icecreams.js'; // Adjust the path as needed
 
 const IceCreamsRouter = express.Router();
 
