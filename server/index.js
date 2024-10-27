@@ -21,6 +21,11 @@ app.use(express.json());
 // Connect to MongoDB
 connectDB();
 
+// Empty route for server status check
+app.get('/', (req, res) => {
+  res.send('Server is running smoothly!');
+});
+
 // Use the user, auth, and burger routes
 app.use("/api", userRoutes);
 app.use('/auth', authRoutes);
