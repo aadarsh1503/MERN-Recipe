@@ -9,6 +9,7 @@ import iceCreamRoutes from './Routes/icecreams.route.js';
 import burgerRoutes from './Routes/burger.route.js'; 
 import Cart from './Routes/cart.route.js';
 
+
 const app = express();
 
 app.use(cors());
@@ -27,6 +28,7 @@ app.use('/', pizzaRoutes);
 app.use('/', rollRoutes);
 app.use("/", iceCreamRoutes);
 app.use('/', Cart );
+
 
 // Start the server
 app.listen(3000, () => {

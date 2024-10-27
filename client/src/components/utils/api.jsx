@@ -1,4 +1,3 @@
-// utils/api.js
 export const postData = async (url, data) => {
     try {
         const response = await fetch(url, {

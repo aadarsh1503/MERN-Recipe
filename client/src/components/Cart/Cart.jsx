@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { FaTrashAlt, FaCreditCard } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { motion } from 'framer-motion';
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -63,10 +64,13 @@ const Cart = () => {
     <div className="container mx-auto p-6">
       <h1 className="text-3xl font-bold text-center mb-6">Your Cart</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {cartItems.map((item) => (
-          <div
+        {cartItems.map((item, index) => (
+          <motion.div
             key={item._id}
             className="p-6 bg-white shadow-lg rounded-lg transform transition duration-500 hover:scale-105"
+            initial={{ opacity: 0, y: 20 }} // Initial state
+            animate={{ opacity: 1, y: 0 }} // Final state
+            transition={{ delay: index * 0.2 }} // Delay for each item
           >
             <img
               src={item.image}
@@ -89,7 +93,7 @@ const Cart = () => {
                 Remove
               </button>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
       <div className="flex justify-center mt-8">

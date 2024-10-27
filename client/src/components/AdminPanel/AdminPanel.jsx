@@ -41,7 +41,7 @@ const AdminPanel = () => {
             case 'burger':
                 return 'http://localhost:3000/burger';
             case 'pizza':
-                return 'http://localhost:3000/pizzas';
+                return 'http://localhost:3000/pizza';
             case 'icecream':
                 return 'http://localhost:3000/icecreams';
             case 'roll':

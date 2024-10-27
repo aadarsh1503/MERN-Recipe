@@ -109,36 +109,38 @@ const BuyNow = () => {
       </div>
 
       {/* Bill Section */}
-      <div className="w-1/3 bg-white p-8 rounded-lg shadow-2xl transition-transform duration-500 hover:scale-105">
-        <h2 className="text-3xl font-bold text-center mb-6">Your Bill</h2>
-        <div className="space-y-4">
-          {cartItems.map((item) => (
-            <div key={item._id} className="flex items-center justify-between border-b border-gray-300 pb-4 transition-transform duration-300 hover:translate-x-1">
-              <div className="flex items-center">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-16 h-16 object-cover rounded-md mr-4"
-                />
-                <span className="text-lg font-medium text-gray-800">{item.name}</span>
-              </div>
-              <span className="text-lg font-medium text-gray-800">${item.totalPrice.toFixed(2)}</span>
-            </div>
-          ))}
-          <div className="flex justify-between items-center font-bold text-2xl mt-6 text-gray-800">
-            <span>Total</span>
-            <span>${calculateTotal()}</span>
-          </div>
+{/* Bill Section */}
+<div className="w-1/3 bg-white p-8 rounded-lg shadow-2xl transition-transform duration-500 hover:scale-105 max-h-[calc(100vh-4rem)] overflow-y-auto">
+  <h2 className="text-3xl font-bold text-center mb-6">Your Bill</h2>
+  <div className="space-y-4">
+    {cartItems.map((item) => (
+      <div key={item._id} className="flex items-center justify-between border-b border-gray-300 pb-1 transition-transform duration-300 hover:translate-x-1">
+        <div className="flex items-center">
+          <img
+            src={item.image}
+            alt={item.name}
+            className="w-16 h-16 object-cover rounded-md mr-4"
+          />
+          <span className="text-lg font-medium text-gray-800">{item.name}</span>
         </div>
-        <div className="mt-8 flex justify-center">
-          <button
-            className="flex items-center justify-center text-white bg-gradient-to-r from-teal-400 to-blue-500 hover:from-teal-500 hover:to-blue-600 transition duration-300 ease-in-out p-4 rounded-full shadow-xl transform hover:scale-110"
-            onClick={handleProceedToPayment}
-          >
-            Proceed to Payment
-          </button>
-        </div>
+        <span className="text-lg font-medium text-gray-800">${item.totalPrice.toFixed(2)}</span>
       </div>
+    ))}
+    <div className="flex justify-between items-center font-bold text-2xl mt-6 text-gray-800">
+      <span>Total</span>
+      <span>${calculateTotal()}</span>
+    </div>
+  </div>
+  <div className="mt-8 flex justify-center">
+    <button
+      className="flex items-center justify-center text-white bg-gradient-to-r from-teal-400 to-blue-500 hover:from-teal-500 hover:to-blue-600 transition duration-300 ease-in-out p-4 rounded-full shadow-xl transform hover:scale-110"
+      onClick={handleProceedToPayment}
+    >
+      Proceed to Payment
+    </button>
+  </div>
+</div>
+
     </div>
   );
 };

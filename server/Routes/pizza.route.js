@@ -5,22 +5,20 @@ const router = express.Router();
 
 // Create a new pizza
 router.post('/pizza', async (req, res) => {
-    const { name, description, price, size, toppings } = req.body;
+    const { name, description, price, size, toppings, pic } = req.body;
 
-    // Input validation
-    if (!name || !description || !price || !size) {
-        return res.status(400).json({ message: 'Name, description, price, and size are required' });
+    if (!name || !description || !price || !size || !pic) {
+        return res.status(400).json({ message: 'Name, description, price, size, and pic (image URL) are required' });
     }
 
     try {
-        const newPizza = new Pizza({ name, description, price, size, toppings });
+        const newPizza = new Pizza({ name, description, price, size, toppings, pic });
         await newPizza.save();
         res.status(201).json(newPizza);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
-
 // Get all pizzas
 router.get('/pizzas', async (req, res) => {
     try {
@@ -46,12 +44,12 @@ router.get('/pizzas/:id', async (req, res) => {
 
 // Update a pizza by ID
 router.put('/pizzas/:id', async (req, res) => {
-    const { name, description, price, size, toppings } = req.body;
+    const { name, description, price, size, toppings, pic } = req.body;
 
     try {
         const updatedPizza = await Pizza.findByIdAndUpdate(
             req.params.id,
-            { name, description, price, size, toppings },
+            { name, description, price, size, toppings, pic },
             { new: true, runValidators: true }
         );
         if (!updatedPizza) {

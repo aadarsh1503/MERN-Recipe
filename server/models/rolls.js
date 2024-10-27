@@ -19,8 +19,12 @@ const rollSchema = new mongoose.Schema({
         type: String,
         enum: ['Small', 'Medium', 'Large'], // Enum for predefined sizes
         required: true
+    },
+    pic: {
+        type: String, // URL or path to the image
+        required: false // Optional
     }
-},);
+});
 
 const Roll = mongoose.model('Roll', rollSchema);
 

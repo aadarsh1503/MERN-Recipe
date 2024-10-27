@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Create a new roll
 router.post('/rolls', async (req, res) => {
-    const { name, description, price, ingredients, size } = req.body;
+    const { name, description, price, ingredients, size, pic } = req.body;
 
     // Input validation
     if (!name || !description || !price || !size) {
@@ -13,7 +13,7 @@ router.post('/rolls', async (req, res) => {
     }
 
     try {
-        const newRoll = new Roll({ name, description, price, ingredients, size });
+        const newRoll = new Roll({ name, description, price, ingredients, size, pic });
         await newRoll.save();
         res.status(201).json(newRoll);
     } catch (error) {
@@ -46,12 +46,12 @@ router.get('/rolls/:id', async (req, res) => {
 
 // Update a roll by ID
 router.put('/rolls/:id', async (req, res) => {
-    const { name, description, price, ingredients, size } = req.body;
+    const { name, description, price, ingredients, size, pic } = req.body;
 
     try {
         const updatedRoll = await Roll.findByIdAndUpdate(
             req.params.id,
-            { name, description, price, ingredients, size },
+            { name, description, price, ingredients, size, pic },
             { new: true, runValidators: true }
         );
         if (!updatedRoll) {

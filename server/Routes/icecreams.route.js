@@ -28,14 +28,15 @@ router.get('/icecreams/:id', async (req, res) => {
 
 // POST a new ice cream
 router.post('/icecreams', async (req, res) => {
-    const { name, description, price, flavors, size } = req.body;
+    const { name, description, price, flavors, size, pic } = req.body;
 
     const iceCream = new IceCream({
         name,
         description,
         price,
         flavors,
-        size
+        size,
+        pic // Include the image URL
     });
 
     try {
@@ -48,12 +49,12 @@ router.post('/icecreams', async (req, res) => {
 
 // PUT (update) an ice cream by ID
 router.put('/icecreams/:id', async (req, res) => {
-    const { name, description, price, flavors, size } = req.body;
+    const { name, description, price, flavors, size, pic } = req.body;
 
     try {
         const updatedIceCream = await IceCream.findByIdAndUpdate(
             req.params.id,
-            { name, description, price, flavors, size },
+            { name, description, price, flavors, size, pic }, // Update the pic field as well
             { new: true, runValidators: true }
         );
 

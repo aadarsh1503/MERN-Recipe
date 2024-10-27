@@ -14,6 +14,11 @@ import { useAuth, AuthProvider } from './components/context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx'; // Import ProtectedRoute
 import './index.css';
 import AdminPanel from './components/AdminPanel/AdminPanel.jsx';
+import TermsOfService from './components/TermsofService/TermsOfService.jsx';
+import AboutSection from './components/About/About.jsx';
+import BlogPage from './components/Blogs/Blogs.jsx';
+import PrivacyPolicyPage from './components/PrivacyPolicyPage/PrivacyPolicyPage.jsx';
+import ContactUsPage from './components/Contact/Contact.jsx';
 
 const App = () => {
   const { token,user } = useAuth(); // Using AuthContext to get token
@@ -38,6 +43,13 @@ const App = () => {
       <Route path="/rolls" element={<Rolls />} />
       <Route path="/icecreams" element={<IceCreams />} />
       <Route path="/AdminPanel" element={<AdminPanel />} />
+      <Route path="/TermsOfService"element={<TermsOfService />} />
+      <Route path="/About"element={<AboutSection />} />
+      <Route path="/Blog"element={<BlogPage />} />
+      <Route path="/privacy"element={<PrivacyPolicyPage />} />
+      <Route path="/contactus"element={<ContactUsPage />} />
+
+      
 
       {/* Protected Routes */}
       <Route

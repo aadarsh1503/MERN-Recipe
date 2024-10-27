@@ -18,7 +18,11 @@ const pizzaSchema = new mongoose.Schema({
         enum: ['Small', 'Medium', 'Large'], // Enum for predefined sizes
         required: true
     },
-    toppings: [String] // Array of strings for toppings
+    toppings: [String], // Array of strings for toppings
+    pic: { // New field for image URL
+        type: String,
+        required: true // You can make this required or optional
+    }
 });
 
 const Pizza = mongoose.model('Pizza', pizzaSchema);

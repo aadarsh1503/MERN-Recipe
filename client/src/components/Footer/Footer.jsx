@@ -62,7 +62,7 @@ const Footer = () => {
                         </div>
                         <div className="w-1/2 flex flex-col justify-evenly gap-2 max-[768px]:gap-4">
                             <Link to="/pricing" className="hover:text-gray-300 transition-all duration-300 ease-in-out">Pricing</Link>
-                            <Link to="/admin/blogs" className="hover:text-gray-300 transition-all duration-300 ease-in-out">Blogs</Link>
+                            <Link to="/blog" className="hover:text-gray-300 transition-all duration-300 ease-in-out">Blogs</Link>
                             <Link to="/privacy" className="hover:text-gray-300 transition-all duration-300 ease-in-out">Privacy</Link>
                             <Link to="/user" className="hover:text-gray-300 transition-all duration-300 ease-in-out">Users</Link>
                         </div>

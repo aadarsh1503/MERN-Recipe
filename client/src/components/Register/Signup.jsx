@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
+import Sign from './Sign.jpg'; // Adjust the path to your image
 
 function Signup() {
   const [values, setValues] = useState({
@@ -50,10 +51,7 @@ function Signup() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            ...values,
-            cart: '60f9a0c4b8a8c3d6b5f7a4b0' // Provide a dummy ObjectId for cart
-          }),
+          body: JSON.stringify(values),
         });
   
         const result = await res.json();
@@ -68,9 +66,13 @@ function Signup() {
       }
     }
   };
+  
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-green-400 via-blue-500 to-purple-500">
+    <div
+      className="flex items-center justify-center min-h-screen bg-cover bg-center"
+      style={{ backgroundImage: `url(${Sign})` }}
+    >
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-bold mb-8 text-gray-800 text-center">Sign Up</h2>
         

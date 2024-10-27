@@ -19,6 +19,10 @@ const iceCreamSchema = new mongoose.Schema({
         type: String,
         enum: ['Small', 'Medium', 'Large'], // Enum for predefined sizes
         required: true
+    },
+    pic: { 
+        type: String, 
+        required: true // URL of the image, required field
     }
 });
 
