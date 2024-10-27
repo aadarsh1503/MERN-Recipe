@@ -26,6 +26,6 @@ const iceCreamSchema = new mongoose.Schema({
     }
 });
 
-const IceCream = mongoose.model('IceCream', iceCreamSchema);
+const IceCreams = mongoose.model('IceCreams', iceCreamSchema);
 
-export default IceCream;
+export default IceCreams;
