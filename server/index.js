@@ -8,6 +8,7 @@ import rollRoutes from './Routes/rolls.route.js';
 import iceCreamRoutes from './Routes/icecreams.route.js';
 import burgerRoutes from './Routes/burger.route.js'; 
 import Cart from './Routes/cart.route.js';
+import IceCreamRouter from './Routes/icecreams.route.js';
 
 
 const app = express();
@@ -26,7 +27,7 @@ app.use('/auth', authRoutes);
 app.use('/', burgerRoutes); 
 app.use('/', pizzaRoutes);
 app.use('/', rollRoutes);
-app.use("/", iceCreamRoutes);
+app.use("/", IceCreamRouter);
 app.use('/', Cart );
 
 

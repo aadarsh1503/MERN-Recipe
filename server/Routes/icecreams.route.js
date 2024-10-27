@@ -1,10 +1,10 @@
 import express from 'express';
 import IceCream from '../models/IceCreams.js'; // Adjust the path as needed
 
-const router = express.Router();
+const IceCreamRouter = express.Router();
 
 // GET all ice creams
-router.get('/icecreams', async (req, res) => {
+IceCreamRouter.get('/icecreams', async (req, res) => {
     try {
         const iceCreams = await IceCream.find();
         res.json(iceCreams);
@@ -14,7 +14,7 @@ router.get('/icecreams', async (req, res) => {
 });
 
 // GET a specific ice cream by ID
-router.get('/icecreams/:id', async (req, res) => {
+IceCreamRouter.get('/icecreams/:id', async (req, res) => {
     try {
         const iceCream = await IceCream.findById(req.params.id);
         if (!iceCream) {
@@ -27,7 +27,7 @@ router.get('/icecreams/:id', async (req, res) => {
 });
 
 // POST a new ice cream
-router.post('/icecreams', async (req, res) => {
+IceCreamRouter.post('/icecreams', async (req, res) => {
     const { name, description, price, flavors, size, pic } = req.body;
 
     const iceCream = new IceCream({
@@ -48,7 +48,7 @@ router.post('/icecreams', async (req, res) => {
 });
 
 // PUT (update) an ice cream by ID
-router.put('/icecreams/:id', async (req, res) => {
+IceCreamRouter.put('/icecreams/:id', async (req, res) => {
     const { name, description, price, flavors, size, pic } = req.body;
 
     try {
@@ -69,7 +69,7 @@ router.put('/icecreams/:id', async (req, res) => {
 });
 
 // DELETE an ice cream by ID
-router.delete('/icecreams/:id', async (req, res) => {
+IceCreamRouter.delete('/icecreams/:id', async (req, res) => {
     try {
         const iceCream = await IceCream.findByIdAndDelete(req.params.id);
 
@@ -83,4 +83,4 @@ router.delete('/icecreams/:id', async (req, res) => {
     }
 });
 
-export default router;
+export default IceCreamRouter;
