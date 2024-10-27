@@ -10,9 +10,9 @@ import burgerRoutes from './Routes/burger.route.js';
 import Cart from './Routes/cart.route.js';
 import IceCreamRouter from './Routes/icecreams.route.js';
 
-
 const app = express();
 
+// Use CORS
 app.use(cors());
 
 // Enable JSON parsing
@@ -30,8 +30,8 @@ app.use('/', rollRoutes);
 app.use("/", IceCreamRouter);
 app.use('/', Cart );
 
-
-// Start the server
-app.listen(3000, () => {
-  console.log('Server is running on port: 3000');
+// Start the server on a dynamic port or 3000 as default
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
