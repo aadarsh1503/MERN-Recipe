@@ -5,7 +5,6 @@ import userRoutes from './Routes/user.route.js';
 import authRoutes from './Routes/auth.route.js';
 import pizzaRoutes from './Routes/pizza.route.js'; 
 import rollRoutes from './Routes/rolls.route.js';
-import iceCreamRoutes from './Routes/icecreams.route.js';
 import burgerRoutes from './Routes/burger.route.js'; 
 import Cart from './Routes/cart.route.js';
 import IceCreamRouter from './Routes/icecreams.route.js';

@@ -6,7 +6,7 @@ const IceCreamsRouter = express.Router();
 // GET all ice creams
 IceCreamsRouter.get('/icecreams', async (req, res) => {
     try {
-        const iceCreams = await IceCream.find();
+        const iceCreams = await IceCreams.find(); // Use IceCreams here
         res.json(iceCreams);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -16,7 +16,7 @@ IceCreamsRouter.get('/icecreams', async (req, res) => {
 // GET a specific ice cream by ID
 IceCreamsRouter.get('/icecreams/:id', async (req, res) => {
     try {
-        const iceCream = await IceCream.findById(req.params.id);
+        const iceCream = await IceCreams.findById(req.params.id); // Use IceCreams here
         if (!iceCream) {
             return res.status(404).json({ message: 'Ice cream not found' });
         }
@@ -30,7 +30,7 @@ IceCreamsRouter.get('/icecreams/:id', async (req, res) => {
 IceCreamsRouter.post('/icecreams', async (req, res) => {
     const { name, description, price, flavors, size, pic } = req.body;
 
-    const iceCream = new IceCream({
+    const iceCream = new IceCreams({ // Use IceCreams here
         name,
         description,
         price,
@@ -52,7 +52,7 @@ IceCreamsRouter.put('/icecreams/:id', async (req, res) => {
     const { name, description, price, flavors, size, pic } = req.body;
 
     try {
-        const updatedIceCream = await IceCream.findByIdAndUpdate(
+        const updatedIceCream = await IceCreams.findByIdAndUpdate( // Use IceCreams here
             req.params.id,
             { name, description, price, flavors, size, pic }, // Update the pic field as well
             { new: true, runValidators: true }
@@ -71,7 +71,7 @@ IceCreamsRouter.put('/icecreams/:id', async (req, res) => {
 // DELETE an ice cream by ID
 IceCreamsRouter.delete('/icecreams/:id', async (req, res) => {
     try {
-        const iceCream = await IceCream.findByIdAndDelete(req.params.id);
+        const iceCream = await IceCreams.findByIdAndDelete(req.params.id); // Use IceCreams here
 
         if (!iceCream) {
             return res.status(404).json({ message: 'Ice cream not found' });
