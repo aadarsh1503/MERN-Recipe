@@ -23,7 +23,7 @@ const Favoritefood = () => {
     useEffect(() => {
         const fetchBurgers = async () => {
             try {
-                const response = await fetch('http://localhost:3000/burgers'); // Replace with your API endpoint
+                const response = await fetch('https://mern-recipe-5.onrender.com/burgers'); // Replace with your API endpoint
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -42,7 +42,7 @@ const Favoritefood = () => {
     useEffect(() => {
         const fetchPizzas = async () => {
             try {
-                const response = await fetch('http://localhost:3000/pizzas');
+                const response = await fetch('https://mern-recipe-5.onrender.com/pizzas');
                 if (!response.ok) {
                     throw new Error('Failed to fetch pizzas');
                 }
@@ -61,7 +61,7 @@ const Favoritefood = () => {
     useEffect(() => {
         const fetchIceCreams = async () => {
             try {
-                const response = await fetch('http://localhost:3000/icecreams'); // Replace with your API endpoint
+                const response = await fetch('https://mern-recipe-5.onrender.com/icecreams'); // Replace with your API endpoint
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -80,7 +80,7 @@ const Favoritefood = () => {
     useEffect(() => {
         const fetchRolls = async () => {
             try {
-                const response = await fetch('http://localhost:3000/rolls'); // Replace with your API endpoint
+                const response = await fetch('https://mern-recipe-5.onrender.com/rolls'); // Replace with your API endpoint
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -148,7 +148,7 @@ const Favoritefood = () => {
         };
 
         try {
-            const result = await postData(`http://localhost:3000/carts/${user._id}`, cartData);
+            const result = await postData(`https://mern-recipe-5.onrender.com/carts/${user._id}`, cartData);
             console.log('Item added to cart:', result);
             
             toast.success(`Added ${item.name} to cart!`, {

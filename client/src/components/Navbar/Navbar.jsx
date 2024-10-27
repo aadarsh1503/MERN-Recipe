@@ -28,7 +28,7 @@ const Navbar = () => {
     const fetchCartCount = async () => {
       if (user?._id) {
         try {
-          const response = await fetch(`http://localhost:3000/cart/${user._id}`);
+          const response = await fetch(`https://mern-recipe-5.onrender.com/cart/${user._id}`);
           const data = await response.json();
           const totalCount = data.items?.reduce((total, item) => total + item.quantity, 0) || 0;
           setCartCount(totalCount);

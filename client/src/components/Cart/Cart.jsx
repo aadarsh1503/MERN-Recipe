@@ -14,7 +14,7 @@ const Cart = () => {
     const fetchCartItems = async () => {
       try {
         if (user?._id) {
-          const response = await fetch(`http://localhost:3000/cart/${user._id}`);
+          const response = await fetch(`https://mern-recipe-5.onrender.com/cart/${user._id}`);
           const data = await response.json();
           setCartItems(data.items || []);
           setCartCount(data.items.length); // Update cart count
@@ -34,7 +34,7 @@ const Cart = () => {
 
   const handleRemoveItem = async (itemId) => {
     try {
-      const response = await fetch(`http://localhost:3000/cart/${user._id}/${itemId}`, {
+      const response = await fetch(`https://mern-recipe-5.onrender.com/cart/${user._id}/${itemId}`, {
         method: 'DELETE',
       });
 

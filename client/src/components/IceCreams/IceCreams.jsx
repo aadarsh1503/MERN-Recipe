@@ -18,7 +18,7 @@ const IceCreams = () => {
     useEffect(() => {
         const fetchIceCreams = async () => {
             try {
-                const response = await fetch('http://localhost:3000/icecreams'); // Replace with your API endpoint
+                const response = await fetch('https://mern-recipe-5.onrender.com/icecreams'); // Replace with your API endpoint
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -64,7 +64,7 @@ const IceCreams = () => {
         };
 
         try {
-            const result = await postData(`http://localhost:3000/carts/${user._id}`, cartData);
+            const result = await postData(`https://mern-recipe-5.onrender.com/carts/${user._id}`, cartData);
             toast.success('Ice cream added to cart successfully!', { icon: <AiOutlineShoppingCart size={24} color="green" /> });
         } catch (error) {
             toast.error(`Error: ${error.message}`);

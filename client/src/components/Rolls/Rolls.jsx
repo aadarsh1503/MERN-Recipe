@@ -18,7 +18,7 @@ const Rolls = () => {
     useEffect(() => {
         const fetchRolls = async () => {
             try {
-                const response = await fetch('http://localhost:3000/rolls'); // Replace with your API endpoint
+                const response = await fetch('https://mern-recipe-5.onrender.com/rolls'); // Replace with your API endpoint
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -65,7 +65,7 @@ const Rolls = () => {
         };
 
         try {
-            const result = await postData(`http://localhost:3000/carts/${user._id}`, cartData);
+            const result = await postData(`https://mern-recipe-5.onrender.com/carts/${user._id}`, cartData);
             toast.success('Roll added to cart successfully!');
         } catch (error) {
             toast.error(`Error: ${error.message}`);

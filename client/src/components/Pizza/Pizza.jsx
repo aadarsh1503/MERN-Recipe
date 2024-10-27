@@ -19,7 +19,7 @@ const Pizzas = () => {
     useEffect(() => {
         const fetchPizzas = async () => {
             try {
-                const response = await fetch('http://localhost:3000/pizzas');
+                const response = await fetch('https://mern-recipe-5.onrender.com/pizzas');
                 if (!response.ok) {
                     throw new Error('Failed to fetch pizzas');
                 }
@@ -65,7 +65,7 @@ const Pizzas = () => {
         };
 
         try {
-            const result = await postData(`http://localhost:3000/carts/${user._id}`, cartData);
+            const result = await postData(`https://mern-recipe-5.onrender.com/carts/${user._id}`, cartData);
             toast.success('Pizza added to cart successfully!');
         } catch (error) {
             toast.error(`Error: ${error.message}`);
