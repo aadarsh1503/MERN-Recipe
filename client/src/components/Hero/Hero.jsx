@@ -47,27 +47,27 @@ const Hero = () => {
             
 
             {/* Left-aligned Text and Quote */}
-            <div className={`flex flex-col px-4 text-gray-300 sm:px-6 md:px-8 lg:px-12 xl:px-20  sm:-mt-20 md:-mt-24 lg:-mt-28 transition-opacity duration-1000 ${showText ? 'opacity-100' : 'opacity-0'} text-center md:text-left`}>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-2">Laughter</h1>
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-2">is brightest</h2>
-                <h4 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-2">where</h4>
-                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-serif">food is good</h3>
+            <div className={`flex flex-col px-4 text-gray-300 sm:px-6 md:px-8  lg:px-20  sm:-mt-20 md:-mt-24 lg:-mt-2 transition-opacity duration-1000 ${showText ? 'opacity-100' : 'opacity-0'} text-center md:text-left`}>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-serif font-bold mb-2">Laughter</h1>
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl mb-2">is brightest</h2>
+                <h4 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl mb-2">where</h4>
+                <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold font-serif">food is good</h3>
 
                 {/* Star Ratings with Black Background */}
-                <div className="flex  mt-12 space-x-1 justify-center md:space-x-4  shadow-lg  bg-white  p-1 rounded-full">
-    <span className="text-gray-400 text-2xl md:text-5xl transition-transform duration-300 transform hover:scale-110 hover:text-gray-600  rounded-full">
+                <div className="flex  mt-12 space-x-1 justify-center md:space-x-4  shadow-lg  bg-white  p-1  rounded-full">
+    <span className="text-gray-400 text-2xl md:text-5xl transition-transform duration-300 transform hover:scale-110 -mt-1 hover:text-gray-600  rounded-full">
         ★
     </span>
-    <span className="text-gray-500 text-2xl md:text-5xl transition-transform duration-300 transform hover:scale-110 hover:text-gray-700  rounded-full">
+    <span className="text-gray-500 text-2xl md:text-5xl transition-transform duration-300 transform hover:scale-110 -mt-1 hover:text-gray-700  rounded-full">
         ★
     </span>
-    <span className="text-gray-600 text-2xl md:text-5xl transition-transform duration-300 transform hover:scale-110 hover:text-yellow-400  rounded-full">
+    <span className="text-gray-600 text-2xl md:text-5xl transition-transform duration-300 transform hover:scale-110 -mt-1 hover:text-yellow-400  rounded-full">
         ★
     </span>
-    <span className="text-gray-800 text-2xl md:text-5xl transition-transform duration-300 transform hover:scale-110 hover:text-yellow-500  rounded-full">
+    <span className="text-gray-800 text-2xl md:text-5xl transition-transform duration-300 transform hover:scale-110 -mt-1 hover:text-yellow-500  rounded-full">
         ★
     </span>
-    <span className="text-yellow-500 text-2xl md:text-5xl transition-transform duration-300 transform hover:scale-110  rounded-full">
+    <span className="text-yellow-500 text-2xl md:text-5xl transition-transform duration-300 transform hover:scale-110 -mt-1  rounded-full">
         ★
     </span>
 </div>
@@ -76,7 +76,7 @@ const Hero = () => {
 </div>
 
             {/* Recipe Cards */}
-            <div className={`relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 w-full max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg transition-opacity duration-1000 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
+            <div className={`relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 w-full max-w-screen-sm md:max-w-screen-md lg:max-w-screen transition-opacity duration-1000 ${showContent ? 'opacity-100' : 'opacity-0'}`}>
                 {recipes.map((recipe, index) => (
                     <a
                         href={recipe.link}

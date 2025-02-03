@@ -10,6 +10,8 @@ const Navbar = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [cartCount, setCartCount] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [navbarVisible, setNavbarVisible] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -23,7 +25,6 @@ const Navbar = () => {
     };
   }, []);
 
-  // Fetch cart count from the backend when the user is logged in
   useEffect(() => {
     const fetchCartCount = async () => {
       if (user?._id) {
@@ -44,23 +45,45 @@ const Navbar = () => {
     fetchCartCount();
   }, [user?._id]); // Depend on user._id
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setNavbarVisible(false);
+      } else {
+        // Scrolling up
+        setNavbarVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   return (
-    <div className="sticky z-[100] top-0">
-      <div className="relative bg-white py-1 shadow-md">
+    <div className={`sticky z-[100] font-poppins top-0 transition-transform duration-300 ${navbarVisible ? 'translate-y-0' : '-translate-y-full'}`}>
+      <div className="relative bg-white shadow-md">
         <div className="flex w-[90%] m-auto items-center justify-between max-[1000px]:w-full max-[1000px]:px-4">
           <div className="flex items-center">
             <div className="flex items-center gap-4">
               {/* Logo Image */}
-              <div className="cursor-pointer mr-4">
+              <div className="cursor-pointer mr-">
                 <a href="/">
                   <img
                     src={Image} 
                     alt="logo"
-                    className="w-14 h-auto max-w-[40px] min-w-[35px]" // Responsive image
+                    className="w-16 h-20 p-1" // Responsive image
                   />
                 </a>
               </div>
@@ -90,7 +113,7 @@ const Navbar = () => {
                 <img
                   src={chilli} 
                   alt="Red Chilli"
-                  className="ml-[-1.5rem] w-12 h-12 md:w-20 md:h-20 lg:w-24 lg:h-24" // Increase size in md and lg
+                  className="ml-[-1.5rem] w-12 h-12 md:w-20 md:h-20 lg:w-24 lg:h-20" // Increase size in md and lg
                 />
               </div>
             </div>
@@ -114,9 +137,9 @@ const Navbar = () => {
             ) : (
               <>
                 {/* Change text size on md screen */}
-                <div className="text-4xl md:text-2xl lg:text-4xl font-bold">
+                <div className="text-4xl md:text-2xl lg:text-3xl font-bold">
                   <span className="text-black">Hii, </span>
-                  <span className="text-red-500 font-extrabold bg-clip-text ">
+                  <span className="text-red-500 font-bold bg-clip-text ">
                     {user.name}
                   </span>
                 </div>

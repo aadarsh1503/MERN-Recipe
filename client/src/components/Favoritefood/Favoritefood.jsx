@@ -239,11 +239,11 @@ const Favoritefood = () => {
                 </div>
             </div>
             {/* Right Section with Background Image */}
-            <div className="flex-none w-full top-44 p-2 lg:h-[900px] lg:w-2/5 relative">
+            <div className="flex-none w-full top-[400px]  p-2 lg:h-[800px] lg:mr-10 lg:w-2/5 relative">
                 <img
                     src={Mc}
                     alt="Background"
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full rounded-2xl object-cover"
                     style={{ objectFit: 'fill' }}
                 />
             </div>

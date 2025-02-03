@@ -6,6 +6,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        roboto: ['Roboto', 'sans-serif'],
+        faktum: ['Faktum', 'sans-serif'], // Add Faktum font
+      },
       colors: {
         tealgreen: '#00B894',
       },
