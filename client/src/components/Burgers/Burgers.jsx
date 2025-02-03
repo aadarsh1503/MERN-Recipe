@@ -18,7 +18,7 @@ const Burgers = () => {
     useEffect(() => {
         const fetchBurgers = async () => {
             try {
-                const response = await fetch('https://mern-recipe-5.onrender.com/burgers'); // Replace with your API endpoint
+                const response = await fetch('https://mern-recipe-6.onrender.com/burgers'); // Replace with your API endpoint
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -66,7 +66,7 @@ const Burgers = () => {
         };
 
         try {
-            const result = await postData(`https://mern-recipe-5.onrender.com/carts/${user._id}`, cartData);
+            const result = await postData(`https://mern-recipe-6.onrender.com/carts/${user._id}`, cartData);
             toast.success('Burger added to cart successfully!');
         } catch (error) {
             toast.error(`Error: ${error.message}`);

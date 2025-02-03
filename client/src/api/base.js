@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const VITE_SERVER_BASEURL = "https://mern-recipe-5.onrender.com/";
+const VITE_SERVER_BASEURL = "https://mern-recipe-6.onrender.com/";
 
 const token = localStorage.getItem("token");
 

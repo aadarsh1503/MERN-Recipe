@@ -23,7 +23,7 @@ const Favoritefood = () => {
     useEffect(() => {
         const fetchBurgers = async () => {
             try {
-                const response = await fetch('https://mern-recipe-5.onrender.com/burgers'); // Replace with your API endpoint
+                const response = await fetch('https://mern-recipe-6.onrender.com/burgers'); // Replace with your API endpoint
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -42,7 +42,7 @@ const Favoritefood = () => {
     useEffect(() => {
         const fetchPizzas = async () => {
             try {
-                const response = await fetch('https://mern-recipe-5.onrender.com/pizzas');
+                const response = await fetch('https://mern-recipe-6.onrender.com/pizzas');
                 if (!response.ok) {
                     throw new Error('Failed to fetch pizzas');
                 }
@@ -61,7 +61,7 @@ const Favoritefood = () => {
     useEffect(() => {
         const fetchIceCreams = async () => {
             try {
-                const response = await fetch('https://mern-recipe-5.onrender.com/icecreams'); // Replace with your API endpoint
+                const response = await fetch('https://mern-recipe-6.onrender.com/icecreams'); // Replace with your API endpoint
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -80,7 +80,7 @@ const Favoritefood = () => {
     useEffect(() => {
         const fetchRolls = async () => {
             try {
-                const response = await fetch('https://mern-recipe-5.onrender.com/rolls'); // Replace with your API endpoint
+                const response = await fetch('https://mern-recipe-6.onrender.com/rolls'); // Replace with your API endpoint
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -148,7 +148,7 @@ const Favoritefood = () => {
         };
 
         try {
-            const result = await postData(`https://mern-recipe-5.onrender.com/carts/${user._id}`, cartData);
+            const result = await postData(`https://mern-recipe-6.onrender.com/carts/${user._id}`, cartData);
             console.log('Item added to cart:', result);
             
             toast.success(`Added ${item.name} to cart!`, {
@@ -207,7 +207,7 @@ const Favoritefood = () => {
             {/* Left Section with Cards */}
             <div className="flex-1 py-8 px-6 flex flex-col items-center lg:items-start">
                 <h2 className="text-4xl md:text-5xl lg:text-7xl font-extrabold font-serif mt-10 text-center lg:text-left mb-12 text-gray-100">Our Favorite Items</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
                     {displayedItems.map((item, index) => (
                         <div
                             key={index}
@@ -229,7 +229,7 @@ const Favoritefood = () => {
                             </button>
 
                             {/* Product Details */}
-                            <div className="p-4 lg:p-6 text-center bg-gray-100">
+                            <div className="p-4 lg:p-6 text-center ">
                                 <div className="text-gray-700 mb-2 flex justify-center items-center md:mb-4">{item.icon}</div>
                                 <h3 className="text-xl md:text-2xl font-bold text-gray-800">{item.name}</h3>
                                 <p className="text-lg md:text-xl text-gray-800">${item.price}</p>
@@ -239,12 +239,12 @@ const Favoritefood = () => {
                 </div>
             </div>
             {/* Right Section with Background Image */}
-            <div className="flex-none w-full lg:w-2/5 relative">
+            <div className="flex-none w-full top-44 p-2 lg:h-[900px] lg:w-2/5 relative">
                 <img
                     src={Mc}
                     alt="Background"
                     className="absolute inset-0 w-full h-full object-cover"
-                    style={{ objectFit: 'cover' }}
+                    style={{ objectFit: 'fill' }}
                 />
             </div>
 

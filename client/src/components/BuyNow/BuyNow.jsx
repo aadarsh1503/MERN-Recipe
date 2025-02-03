@@ -12,7 +12,7 @@ const BuyNow = () => {
     const fetchCartItems = async () => {
       try {
         if (user?._id) {
-          const response = await fetch(`https://mern-recipe-5.onrender.com/cart/${user._id}`);
+          const response = await fetch(`https://mern-recipe-6.onrender.com/cart/${user._id}`);
           const data = await response.json();
 
           // Aggregate items with the same properties
@@ -48,7 +48,7 @@ const BuyNow = () => {
 
   const handleRemoveItem = async (itemId) => {
     try {
-      const response = await fetch(`https://mern-recipe-5.onrender.com/cart/${user._id}/${itemId}`, {
+      const response = await fetch(`https://mern-recipe-6.onrender.com/cart/${user._id}/${itemId}`, {
         method: 'DELETE',
       });
 

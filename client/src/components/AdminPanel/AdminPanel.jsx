@@ -39,13 +39,13 @@ const AdminPanel = () => {
     const getApiUrl = (category) => {
         switch (category) {
             case 'burger':
-                return 'https://mern-recipe-5.onrender.com/burger';
+                return 'https://mern-recipe-6.onrender.com/burger';
             case 'pizza':
-                return 'https://mern-recipe-5.onrender.com/pizza';
+                return 'https://mern-recipe-6.onrender.com/pizza';
             case 'icecream':
-                return 'https://mern-recipe-5.onrender.com/icecreams';
+                return 'https://mern-recipe-6.onrender.com/icecreams';
             case 'roll':
-                return 'https://mern-recipe-5.onrender.com/rolls';
+                return 'https://mern-recipe-6.onrender.com/rolls';
             default:
                 return '';
         }

@@ -46,7 +46,7 @@ function Signup() {
     setErrors(validationErrors);
     if (Object.keys(validationErrors).length === 0) {
       try {
-        const res = await fetch('https://mern-recipe-5.onrender.com/auth/signup', {
+        const res = await fetch('https://mern-recipe-6.onrender.com/auth/signup', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

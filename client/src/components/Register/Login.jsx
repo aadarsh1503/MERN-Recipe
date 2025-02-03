@@ -30,7 +30,7 @@ function Login() {
     }
 
     try {
-      const response = await fetch("https://mern-recipe-5.onrender.com/auth/login", {
+      const response = await fetch("https://mern-recipe-6.onrender.com/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
